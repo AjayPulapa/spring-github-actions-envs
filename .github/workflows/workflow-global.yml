@@ -18,6 +18,6 @@ jobs:
 
       - name: Use Global Secrets
         run: |
-          echo "Using Global API Key: $DB_PASSWORD"
+          echo "Using Global API Key: $GLOBAL_API_KEY"
         env:
           GLOBAL_API_KEY: ${{ secrets.DB_PASSWORD }}
