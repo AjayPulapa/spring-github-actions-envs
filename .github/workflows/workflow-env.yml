@@ -1,0 +1,35 @@
+name: Environment Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Environment Variables
+        run: |
+          echo "Deploying to environment: ${{ github.event.inputs.environment }}"
+          echo "DB URL: ${{ vars.DB_URL }}"
+          echo "API URL: ${{ vars.API_URL }}"
+
+      - name: Use Environment Secrets
+        run: |
+          echo "Deploying with DB PASSWORD"
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          GLOBAL_API_KEY: ${{ secrets.GLOBAL_API_KEY }}
