@@ -1,0 +1,23 @@
+name: Global Vars and Secrets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  global-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Print Global Variables
+        run: |
+          echo "App Name: ${{ vars.APP_NAME }}"
+          echo "Global Timeout: ${{ vars.GLOBAL_TIMEOUT }}"
+
+      - name: Use Global Secrets
+        run: |
+          echo "Using Global API Key: $GLOBAL_API_KEY"
+        env:
+          GLOBAL_API_KEY: ${{ secrets.GLOBAL_API_KEY }}
