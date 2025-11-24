@@ -13,11 +13,11 @@ jobs:
 
       - name: Print Global Variables
         run: |
-          echo "App Name: ${{ vars.APP_NAME }}"
-          echo "Global Timeout: ${{ vars.GLOBAL_TIMEOUT }}"
+          echo "API URL: ${{ vars.API_URL }}"
+          echo "DB URL: ${{ vars.DB_URL }}"
 
       - name: Use Global Secrets
         run: |
-          echo "Using Global API Key: $GLOBAL_API_KEY"
+          echo "Using Global API Key: $DB_PASSWORD"
         env:
-          GLOBAL_API_KEY: ${{ secrets.GLOBAL_API_KEY }}
+          GLOBAL_API_KEY: ${{ secrets.DB_PASSWORD }}
